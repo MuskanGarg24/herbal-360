@@ -517,7 +517,20 @@
         }
       }
 
-      // JavaScript function to add a new row to the table
+      function generateRandomSixDigitNumber() {
+        // Generate a random number between 0 and 999999 (inclusive)
+        const randomNumber = Math.floor(Math.random() * 1000000);
+        
+        // Ensure the number has 6 digits by padding with leading zeros if necessary
+        const sixDigitNumber = randomNumber.toString().padStart(6, '0');
+        
+        return sixDigitNumber;
+    }
+
+// JavaScript function to add a new row to the table
+
+let currentRowNumber = 3;
+
 function addRowToTable() {
   // Get the name value from the modal input field
   const nameInput = document.querySelector('#customerModal input[type="text"]');
@@ -525,6 +538,7 @@ function addRowToTable() {
 
   if (name) {
     // Create a new row
+    currentRowNumber++;
     const table = document.querySelector('#customerTable');
     const newRow = table.insertRow(-1);
 
@@ -540,9 +554,11 @@ function addRowToTable() {
       cell.className = cellClasses.join(' '); // Apply the cell styles
     }
 
+    const randomSixDigitNumber = generateRandomSixDigitNumber();
+
     // Set the content for the specific cells
-    newRow.cells[0].textContent = 'No.'
-    newRow.cells[1].textContent = 'ID'; // Dummy data
+    newRow.cells[0].textContent = currentRowNumber.toString().padStart(2, '0');
+    newRow.cells[1].textContent = randomSixDigitNumber;
     newRow.cells[2].textContent = name; // Name from the modal
     newRow.cells[3].textContent = 'member'; // Dummy data
     newRow.cells[4].textContent = '10 units'; // Dummy data

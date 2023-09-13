@@ -518,6 +518,8 @@
       }
 
       // JavaScript function to add a new row to the table
+      let currentRowNumber = 3;
+
 function addRowToTable() {
   // Get the name value from the modal input field
   const nameInput = document.querySelector('#customerModal input[type="text"]');
@@ -525,6 +527,7 @@ function addRowToTable() {
 
   if (name) {
     // Create a new row
+    currentRowNumber++;
     const table = document.querySelector('#customerTable');
     const newRow = table.insertRow(-1);
 
@@ -541,7 +544,7 @@ function addRowToTable() {
     }
 
     // Set the content for the specific cells
-    newRow.cells[0].textContent = 'No.'
+    newRow.cells[0].textContent = currentRowNumber.toString().padStart(2, '0');
     newRow.cells[1].textContent = name; 
     newRow.cells[2].textContent = '3:00 pm';
     newRow.cells[3].textContent = '5';
